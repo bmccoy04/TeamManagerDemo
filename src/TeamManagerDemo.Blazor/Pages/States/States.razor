@@ -1,0 +1,46 @@
+@page "/states"
+
+@using TeamManagerDemo.Infrastructure.Data
+@using TeamManagerDemo.Core.Entities
+
+@inject AppDbContext appDbContext
+
+<h1>States</h1>
+
+@if (states == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if(states.Count() == 0)
+{ 
+    <p>No states found</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var state in states)
+            {
+                <tr>
+                    <td>@state.Id</td>
+                    <td>@state.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private State[] states;
+
+    protected override void OnInitialized()
+    {
+        states =  appDbContext.Set<State>().ToArray();
+    }
+}

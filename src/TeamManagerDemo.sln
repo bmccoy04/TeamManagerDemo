@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamManagerDemo.Blazor", "TeamManagerDemo.Blazor\TeamManagerDemo.Blazor.csproj", "{55AFD562-3FF4-477A-BD55-CA39761188CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamManagerDemo.Core", "TeamManagerDemo.Core\TeamManagerDemo.Core.csproj", "{B5028DD3-E029-4E77-BCC2-6CAEC1460B9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamManagerDemo.Infrastructure", "TeamManagerDemo.Infrastructure\TeamManagerDemo.Infrastructure.csproj", "{6D8521F9-837A-45DB-851E-BA2EE2078D16}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55AFD562-3FF4-477A-BD55-CA39761188CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55AFD562-3FF4-477A-BD55-CA39761188CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55AFD562-3FF4-477A-BD55-CA39761188CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55AFD562-3FF4-477A-BD55-CA39761188CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5028DD3-E029-4E77-BCC2-6CAEC1460B9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5028DD3-E029-4E77-BCC2-6CAEC1460B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5028DD3-E029-4E77-BCC2-6CAEC1460B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5028DD3-E029-4E77-BCC2-6CAEC1460B9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D8521F9-837A-45DB-851E-BA2EE2078D16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D8521F9-837A-45DB-851E-BA2EE2078D16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D8521F9-837A-45DB-851E-BA2EE2078D16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D8521F9-837A-45DB-851E-BA2EE2078D16}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
