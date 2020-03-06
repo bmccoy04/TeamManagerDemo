@@ -1,5 +1,19 @@
-﻿<h3>Component1</h3>
+﻿@page "/addstate"
+
+@using TeamManagerDemo.Infrastructure.Data
+@using TeamManagerDemo.Core.Entities
+
+@inject AppDbContext appDbContext
+
+<section>
+    <h1>
+        Add A new State
+    </h1>
+</section>
 
 @code {
+    private State state => new State();    
+
+    
 
 }
