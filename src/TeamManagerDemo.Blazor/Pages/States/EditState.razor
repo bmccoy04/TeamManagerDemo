@@ -1,5 +1,6 @@
-﻿@page "/add-state"
+@page "/edit-state/{id:int}"
 
+@using Microsoft.EntityFrameworkCore
 @using TeamManagerDemo.Infrastructure.Data
 @using TeamManagerDemo.Core.Entities
 
@@ -8,7 +9,7 @@
 
 <section>
     <h3>
-       Add a new State!
+        Edit the State.
     </h3>
     <EditForm Model="@State" OnValidSubmit="@HandleValidSubmit">
         <DataAnnotationsValidator />
@@ -39,12 +40,22 @@
 
 @code {
     private State State {get; set;} = new State();    
+    
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        State = await appDbContext.Set<State>().FirstOrDefaultAsync(s => s.Id == Id);
+        
+        if(State == null)
+            navigationManager.NavigateTo("add-state");
+    }
 
     private async Task HandleValidSubmit()     
     {
-        State.CreateDate = DateTime.Now;
-        
-        appDbContext.Add(this.State);
+        State.ModifyDate = DateTime.Now;
+        appDbContext.Update(this.State);
         await appDbContext.SaveChangesAsync();
         navigationManager.NavigateTo("states");
     }

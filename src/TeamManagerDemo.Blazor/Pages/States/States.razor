@@ -9,38 +9,62 @@
 
 @if (states == null)
 {
-    <p><em>Loading...</em></p>
+    <p>
+        <em>Loading...</em>
+    </p>
 }
-else if(states.Count() == 0)
-{ 
+else if (states.Count() == 0)
+{
     <p>No states found</p>
 }
 else
 {
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-            </tr>
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var state in states)
-            {
-                <tr>
-                    <td>@state.Id</td>
-                    <td>@state.Name</td>
-                </tr>
-            }
+        @foreach (var state in states)
+        {
+            <tr>
+                <td>@state.Name</td>
+                <td>
+
+                    <a href="@($"edit-state/{@state.Id}")" class="btn btn-primary edit-btn">
+                        Edit State
+                    </a>
+                    <button class="btn btn-danger edit-btn" @onclick="@(e => DeleteState(state.Id))">Delete</button>
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
 }
+
+<NavLink href="add-state" class="btn btn-primary edit-btn">
+    Add State
+</NavLink>
 
 @code {
     private State[] states;
 
     protected override void OnInitialized()
     {
-        states =  appDbContext.Set<State>().ToArray();
+        states = appDbContext.Set<State>().Where(s => !s.Deleted).OrderBy(x => x.Name).ToArray();
     }
+
+    private void DeleteState(int id)
+    {
+        var state = appDbContext.Set<State>().FirstOrDefault(x => x.Id == id);
+        
+        if (state == null) return;
+        state.Deleted = true;
+        state.ModifyDate = DateTime.Now;
+        appDbContext.SaveChanges();
+        states = appDbContext.Set<State>().Where(s => !s.Deleted).OrderBy(x => x.Name).ToArray();
+    }
+
 }
