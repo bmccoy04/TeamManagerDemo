@@ -1,4 +1,4 @@
-﻿@page "/addstate"
+﻿@page "/add-state"
 
 @using TeamManagerDemo.Infrastructure.Data
 @using TeamManagerDemo.Core.Entities
@@ -7,13 +7,40 @@
 
 <section>
     <h1>
-        Add A new State
+        Add a new State!
     </h1>
+    <EditForm Model="@State" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group row">
+            <label for="name" class="col-sm-3">
+                Name:
+            </label>
+            <InputText 
+                id="name" 
+                @bind-Value="@State.Name" 
+                class="form-control col-sm-8" 
+                placeholder="State Name">
+            </InputText>
+            <ValidationMessage 
+                class="offset-sm-3 col-sm-8"
+                For="@(() => State.Name)">
+            </ValidationMessage>
+
+        </div>
+        <button type="submit" class="btn btn-primary edit-btn">Save</button>
+    </EditForm>
 </section>
 
 @code {
-    private State state => new State();    
+    private State State {get; set;} = new State();    
 
-    
+    private async Task HandleValidSubmit()     
+    {
+        appDbContext.Add(this.State);
+        await appDbContext.SaveChangesAsync();
+
+    }
 
 }
