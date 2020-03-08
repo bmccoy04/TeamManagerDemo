@@ -5,48 +5,51 @@
 
 @inject AppDbContext appDbContext
 
-<h1>States</h1>
+<div class="container">
+    <h1>States</h1>
 
-@if (states == null)
-{
-    <p>
-        <em>Loading...</em>
-    </p>
-}
-else if (states.Count() == 0)
-{
-    <p>No states found</p>
-}
-else
-{
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var state in states)
-        {
+    @if (states == null)
+    {
+        <p>
+            <em>Loading...</em>
+        </p>
+    }
+    else if (states.Count() == 0)
+    {
+        <p>No states found</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
             <tr>
-                <td>@state.Name</td>
-                <td>
-
-                    <a href="@($"edit-state/{@state.Id}")" class="btn btn-primary edit-btn">
-                        Edit State
-                    </a>
-                    <button class="btn btn-danger edit-btn" @onclick="@(e => DeleteState(state.Id))">Delete</button>
-                </td>
+                <th>Name</th>
+                <th></th>
             </tr>
-        }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+            @foreach (var state in states)
+            {
+                <tr>
+                    <td>@state.Name</td>
+                    <td>
 
-<NavLink href="add-state" class="btn btn-primary edit-btn">
-    Add State
-</NavLink>
+                        <a href="@($"edit-state/{@state.Id}")" class="btn btn-primary edit-btn">
+                            Edit State
+                        </a>
+                        <button class="btn btn-danger edit-btn" @onclick="@(e => DeleteState(state.Id))">Delete</button>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+
+    <NavLink href="add-state" class="btn btn-primary edit-btn">
+        Add State
+    </NavLink>
+
+</div>
 
 @code {
     private State[] states;
@@ -59,7 +62,7 @@ else
     private void DeleteState(int id)
     {
         var state = appDbContext.Set<State>().FirstOrDefault(x => x.Id == id);
-        
+
         if (state == null) return;
         state.Deleted = true;
         state.ModifyDate = DateTime.Now;

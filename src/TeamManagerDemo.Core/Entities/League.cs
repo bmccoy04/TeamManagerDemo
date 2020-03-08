@@ -16,4 +16,14 @@ namespace TeamManagerDemo.Core.Entities
 
         public ICollection<Season> Seasons { get; set; }
     }
+
+    public class ManageLeagueDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string ContactName { get; set; }
+        public int NumberOfSeasons { get; set; }
+    }
 }
