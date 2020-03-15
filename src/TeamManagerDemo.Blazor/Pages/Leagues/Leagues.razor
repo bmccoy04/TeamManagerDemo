@@ -16,7 +16,7 @@
     }
     else if (leagues.Count() == 0)
     {
-        <p>No states found</p>
+        <p>No Leagues found</p>
     }
     else
     {
@@ -35,18 +35,45 @@
                     <td>
 
                         <a href="@($"edit-state/{@league.Id}")" class="btn btn-primary edit-btn">
-                            Edit State
+                            Edit Legue
                         </a>
-                        <button class="btn btn-danger edit-btn" @onclick="@(e => DeleteLeague(league.Id))">Delete</button>
+                        <button
+                            class="btn btn-danger edit-btn"
+                            @onclick="@(e => DeleteLeague(league.Id))">
+                            Delete
+                        </button>
                     </td>
                 </tr>
             }
             </tbody>
         </table>
     }
-
-    <NavLink href="add-state" class="btn btn-primary edit-btn">
-        Add State
-    </NavLink>
+    
+    @if (ShowModal)
+    {
+        <div class="modal fade show d-block" id="exampleModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" @onclick="ToggleAddModal" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" @onclick="ToggleAddModal"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- Modal -->
+    <button @onclick="ToggleAddModal" class="btn btn-primary edit-btn">
+        Add League
+    </button>
 
 </div>

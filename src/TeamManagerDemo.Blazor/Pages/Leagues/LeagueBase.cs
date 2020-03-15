@@ -13,6 +13,8 @@ namespace TeamManagerDemo.Blazor.Pages.Leagues
         
         protected League[] leagues;
 
+        protected bool ShowModal { get; set; } = false;
+
         protected override void OnInitialized()
         {
             leagues = appDbContext.Set<League>()
@@ -29,6 +31,11 @@ namespace TeamManagerDemo.Blazor.Pages.Leagues
             state.ModifyDate = DateTime.Now;
             appDbContext.SaveChanges();
             leagues = appDbContext.Set<League>().Where(s => !s.Deleted).OrderBy(x => x.Name).ToArray();
+        }
+
+        protected void ToggleAddModal()
+        {
+            ShowModal = !ShowModal;
         }
     }
 }
