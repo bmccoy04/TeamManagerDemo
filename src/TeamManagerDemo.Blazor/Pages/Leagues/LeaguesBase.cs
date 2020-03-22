@@ -6,7 +6,7 @@ using TeamManagerDemo.Infrastructure.Data;
 
 namespace TeamManagerDemo.Blazor.Pages.Leagues
 {
-    public class LeagueBase : ComponentBase
+    public class LeagueBases : ComponentBase
     {
         [Inject]
         public AppDbContext appDbContext { get; set; }
